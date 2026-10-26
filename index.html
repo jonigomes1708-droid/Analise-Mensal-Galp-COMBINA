@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#082b4c">
+<title>Combina — Controlo de benefícios</title>
+<style>
+:root{--navy:#082b4c;--blue:#145b89;--green:#159447;--lime:#dff5e5;--orange:#f58220;--cream:#f5f7fa;--ink:#152536;--muted:#647487;--line:#e1e8ef;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{background:linear-gradient(135deg,#082b4c,#145b89);color:white;padding:24px 18px 22px;border-radius:0 0 24px 24px}
+.brandrow{display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{font-size:22px;font-weight:850;letter-spacing:-.5px}.brand span{color:#9ce0b0}.pills{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}.pill{background:#ffffff1c;border:1px solid #ffffff30;padding:6px 10px;border-radius:99px;font-size:12px}
+main{max-width:760px;margin:auto;padding:16px 14px 36px}.monthbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.monthbar button,.btn{border:0;border-radius:12px;padding:10px 13px;font-weight:700;cursor:pointer}.monthbar button{background:white;color:var(--navy);box-shadow:0 1px 4px #12263a12}.monthtitle{font-size:17px;font-weight:800;text-align:center}.period{font-size:12px;color:var(--muted);font-weight:500}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:14px}.metric,.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:15px;box-shadow:0 2px 10px #102b4306}.metric .label{font-size:12px;color:var(--muted)}.metric strong{display:block;font-size:23px;letter-spacing:-.6px;margin-top:4px}.metric small{color:var(--muted);font-size:11px}.green{color:var(--green)}.blue{color:var(--blue)}.orange{color:#c65c09}
+.panel{margin-bottom:13px}.panel h2{font-size:16px;margin:0 0 12px;display:flex;align-items:center;gap:8px}.emoji{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:10px;background:#edf4fa;font-size:17px}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.field{display:flex;flex-direction:column;gap:5px}.field.full{grid-column:1/-1}label{font-size:12px;font-weight:700;color:#46576a}input,select{width:100%;border:1px solid #d4dee8;border-radius:11px;padding:12px;font:inherit;background:#fff;color:var(--ink);min-width:0}input:focus{outline:2px solid #8ac5eb;border-color:var(--blue)}.hint{font-size:11px;color:var(--muted);margin-top:8px}
+.addrow{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:end;margin-top:12px}.btn{background:var(--navy);color:white}.btn.secondary{background:#eaf1f7;color:var(--navy)}.btn.danger{background:#fff0ef;color:#b42318;padding:7px 9px}.entries{display:flex;flex-direction:column;gap:7px;margin-top:12px}.entry{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 11px;border:1px solid var(--line);border-radius:12px;background:#fbfcfe}.entry .sub{font-size:11px;color:var(--muted)}.entry strong{font-size:14px}.entryright{display:flex;align-items:center;gap:9px}.empty{padding:13px;text-align:center;color:var(--muted);font-size:12px;background:#f8fafc;border-radius:12px}
+.compare{background:linear-gradient(135deg,#e9f8ee,#f7fcf8);border:1px solid #bfe7ca;border-radius:16px;padding:14px}.compareline{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid #cce9d4}.compareline:last-child{border-bottom:0}.compareline span{color:#435b4a;font-size:13px}.compareline strong{text-align:right}.callout{font-size:12px;color:#435b4a;margin-top:9px}
+.chartbox{height:200px;display:flex;align-items:end;gap:8px;padding:14px 4px 24px;border-bottom:1px solid var(--line);position:relative}.barcol{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:end;height:100%;gap:5px;min-width:0}.bar{width:min(34px,70%);border-radius:7px 7px 2px 2px;min-height:2px;background:#1a9860}.bar.invoice{background:#145b89}.barlabel{font-size:10px;color:var(--muted);white-space:nowrap}.barvalue{font-size:10px;font-weight:750;white-space:nowrap}.legend{display:flex;gap:14px;font-size:11px;color:var(--muted);margin-top:8px}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}.history{width:100%;border-collapse:collapse;font-size:12px}.history th,.history td{text-align:right;padding:9px 4px;border-bottom:1px solid var(--line)}.history th:first-child,.history td:first-child{text-align:left}.history th{color:var(--muted);font-weight:700}.foot{color:var(--muted);font-size:11px;text-align:center;padding:10px 12px 0}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.actions .btn{flex:1}.note{background:#fff8e9;border:1px solid #f4dfad;color:#74521b;padding:11px 12px;border-radius:12px;font-size:12px;margin-bottom:13px}
+@media(max-width:390px){.cards{gap:7px}.metric{padding:12px}.metric strong{font-size:20px}.addrow{grid-template-columns:1fr 1fr}.addrow .btn{grid-column:1/-1}.monthtitle{font-size:15px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brandrow"><div class="brand">GALP <span>×</span> Continente</div><div style="font-size:11px;opacity:.85">COMBINA</div></div>
+  <h1 style="font-size:24px;line-height:1.15;margin:18px 0 6px">O teu painel de poupanças</h1>
+  <div style="opacity:.85;font-size:13px">Acompanha a fatura, os descontos e o saldo estimado.</div>
+  <div class="pills"><span class="pill">Ciclo 15 → 14</span><span class="pill">20 cênt./L Galp</span><span class="pill">2% Continente</span></div>
+</header>
+<main>
+  <div class="monthbar">
+    <button id="prev" aria-label="Mês anterior">‹</button>
+    <div class="monthtitle"><div id="monthName">—</div><div class="period" id="period">—</div></div>
+    <button id="next" aria-label="Mês seguinte">›</button>
+  </div>
+  <div class="cards">
+    <div class="metric"><div class="label">Fatura eletricidade</div><strong id="mBill">0,00 €</strong><small><span id="mKwh">0</span> kWh registados</small></div>
+    <div class="metric"><div class="label">Benefícios estimados</div><strong class="green" id="mBenefits">0,00 €</strong><small>Combustível + compras</small></div>
+    <div class="metric"><div class="label">Desconto combustível Galp</div><strong id="mFuel" class="orange">0,00 €</strong><small id="mLitres">0 L registados</small></div>
+    <div class="metric"><div class="label">Saldo compras Continente</div><strong id="mShop" class="green">0,00 €</strong><small id="mSpend">0,00 € em compras</small></div>
+  </div>
+  <div class="note">Os valores são calculados a partir dos dados que introduzes. O saldo registado é uma estimativa: confirma sempre os valores efetivamente atribuídos nas apps Galp e Cartão Continente.</div>
+  <section class="panel">
+    <h2><span class="emoji">⚡</span> Eletricidade</h2>
+    <div class="fields">
+      <div class="field"><label for="kwh">Consumo do ciclo (kWh)</label><input id="kwh" type="number" min="0" step="0.1" placeholder="Ex.: 480"></div>
+      <div class="field"><label for="bill">Valor final da fatura (€)</label><input id="bill" type="number" min="0" step="0.01" placeholder="Ex.: 96,50"></div>
+    </div>
+    <div class="hint">Período considerado: do dia 15 de um mês ao dia 14 do mês seguinte. Introduz o total final da fatura, com impostos.</div>
+  </section>
+  <section class="panel">
+    <h2><span class="emoji">⛽</span> Abastecimentos Galp</h2>
+    <div class="fields">
+      <div class="field"><label for="fuelDate">Data</label><input id="fuelDate" type="date"></div>
+      <div class="field"><label for="litres">Litros abastecidos</label><input id="litres" type="number" min="0" step="0.01" placeholder="Ex.: 42,5"></div>
+    </div>
+    <div class="addrow"><div class="field"><label for="fuelPaid">Valor pago (€) (opcional)</label><input id="fuelPaid" type="number" min="0" step="0.01" placeholder="Ex.: 68,00"></div><div class="field"><label for="fuelNote">Nota (opcional)</label><input id="fuelNote" placeholder="Ex.: gasolina"></div><button class="btn" id="addFuel">+ Registar</button></div>
+    <div class="hint">Compara 20 cênt./L atuais com os 10 cênt./L anteriores: o painel mostra o benefício total estimado e a diferença adicional de 10 cênt./L.</div>
+    <div id="fuelEntries" class="entries"></div>
+  </section>
+  <section class="panel">
+    <h2><span class="emoji">🛒</span> Compras Continente</h2>
+    <div class="fields">
+      <div class="field"><label for="shopDate">Data</label><input id="shopDate" type="date"></div>
+      <div class="field"><label for="shopAmount">Valor da compra (€)</label><input id="shopAmount" type="number" min="0" step="0.01" placeholder="Ex.: 72,30"></div>
+    </div>
+    <div class="addrow"><div class="field"><label for="shopNote">Nota (opcional)</label><input id="shopNote" placeholder="Ex.: compras semanais"></div><div></div><button class="btn" id="addShop">+ Registar</button></div>
+    <div class="hint">Estimativa de 2% em saldo sobre o valor elegível da compra. Compras ou artigos excluídos pelas condições do programa podem não gerar saldo.</div>
+    <div id="shopEntries" class="entries"></div>
+  </section>
+  <section class="panel">
+    <h2><span class="emoji">📊</span> Comparação deste ciclo</h2>
+    <div class="compare">
+      <div class="compareline"><span>Desconto combustível total (20 cênt./L)</span><strong id="cFuel">0,00 €</strong></div>
+      <div class="compareline"><span>Desconto que já tinhas (10 cênt./L)</span><strong id="cOld">0,00 €</strong></div>
+      <div class="compareline"><span>Benefício adicional combustível</span><strong id="cExtra">0,00 €</strong></div>
+      <div class="compareline"><span>Saldo estimado de compras (2%)</span><strong id="cShop">0,00 €</strong></div>
+      <div class="compareline"><span>Total estimado em cartão (20 cênt./L + 2%)</span><strong id="cTotal">0,00 €</strong></div>
+      <div class="compareline"><span>Fatura menos benefícios estimados</span><strong id="cNet">0,00 €</strong></div>
+      <div class="callout" id="comparisonNote">Regista os teus dados para comparar.</div>
+    </div>
+  </section>
+  <section class="panel">
+    <h2><span class="emoji">📈</span> Gráfico mensal</h2>
+    <div class="chartbox" id="chart"></div>
+    <div class="legend"><span><i class="dot" style="background:#145b89"></i>Fatura</span><span><i class="dot" style="background:#1a9860"></i>Benefícios</span></div>
+    <div class="hint">Compara o valor da fatura com os benefícios estimados deste ciclo.</div>
+  </section>
+  <section class="panel">
+    <h2><span class="emoji">🗓️</span> Histórico por ciclo</h2>
+    <div style="overflow-x:auto"><table class="history"><thead><tr><th>Ciclo</th><th>Fatura</th><th>Benefícios</th><th>Diferença</th></tr></thead><tbody id="history"></tbody></table></div>
+    <div class="hint">Os ciclos ficam guardados neste navegador/telemóvel. Usa Exportar para fazer uma cópia de segurança.</div>
+  </section>
+  <div class="actions"><button class="btn" id="export">Exportar dados (JSON)</button><button class="btn secondary" id="importBtn">Importar cópia</button><input id="importFile" type="file" accept="application/json" hidden><button class="btn secondary" id="csv">Exportar histórico CSV</button></div>
+  <div class="foot">Protótipo independente • Não é uma app oficial da Galp ou do Continente. Os dados ficam guardados localmente neste navegador.</div>
+</main>
+<script>
+const KEY='combina_tracker_v1';
+let store={cycles:{}}, current=cycleFor(new Date());
+const $=id=>document.getElementById(id);
+const euro=n=>Number(n||0).toLocaleString('pt-PT',{style:'currency',currency:'EUR'});
+const num=n=>Number(n||0).toLocaleString('pt-PT',{maximumFractionDigits:2});
+function cycleFor(d){let y=d.getFullYear(),m=d.getMonth();if(d.getDate()<15){m--;if(m<0){m=11;y--}}return `${y}-${String(m+1).padStart(2,'0')}`}
+function cycleDates(key){let [y,m]=key.split('-').map(Number);let start=new Date(y,m-1,15),end=new Date(y,m,14);return {start,end}}
+function labelCycle(key){let [y,m]=key.split('-').map(Number);return new Date(y,m-1,15).toLocaleDateString('pt-PT',{month:'long',year:'numeric'})}
+function dateISO(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
+function empty(){return {kwh:'',bill:'',fuel:[],shops:[]}}
+function data(){if(!store.cycles[current])store.cycles[current]=empty();return store.cycles[current]}
+function save(){localStorage.setItem(KEY,JSON.stringify(store));render()}
+function load(){try{let s=JSON.parse(localStorage.getItem(KEY));if(s&&s.cycles)store=s}catch(e){}}
+function sumFuel(d){return d.fuel.reduce((a,x)=>a+Number(x.litres||0),0)}
+function sumShop(d){return d.shops.reduce((a,x)=>a+Number(x.amount||0),0)}
+function values(d){let litres=sumFuel(d), spend=sumShop(d), fuel=litres*.20, old=litres*.10, shop=spend*.02, total=fuel+shop,bill=Number(d.bill||0);return {litres,spend,fuel,old,extra:litres*.10,shop,total,bill,net:bill-total,kwh:Number(d.kwh||0)}}
+function render(){
+ let d=data(),v=values(d),{start,end}=cycleDates(current);
+ $('monthName').textContent=labelCycle(current);$('period').textContent=`${start.toLocaleDateString('pt-PT',{day:'2-digit',month:'short'})} – ${end.toLocaleDateString('pt-PT',{day:'2-digit',month:'short',year:'numeric'})}`;
+ $('kwh').value=d.kwh;$('bill').value=d.bill;
+ $('mBill').textContent=euro(v.bill);$('mKwh').textContent=num(v.kwh);$('mBenefits').textContent=euro(v.total);$('mFuel').textContent=euro(v.fuel);$('mLitres').textContent=`${num(v.litres)} L registados`;$('mShop').textContent=euro(v.shop);$('mSpend').textContent=`${euro(v.spend)} em compras`;
+ $('cFuel').textContent=euro(v.fuel);$('cOld').textContent=euro(v.old);$('cExtra').textContent=euro(v.extra);$('cShop').textContent=euro(v.shop);$('cTotal').textContent=euro(v.total);$('cNet').textContent=euro(v.net);
+ $('comparisonNote').textContent=v.bill===0&&v.total===0?'Regista os teus dados para comparar.':v.total>=v.bill?'Os benefícios estimados igualam ou ultrapassam o valor da fatura. São saldos/benefícios separados, não um abatimento automático à fatura.':`Os benefícios estimados equivalem a ${(v.bill?100*v.total/v.bill:0).toLocaleString('pt-PT',{maximumFractionDigits:1})}% do valor da fatura. A diferença não é o custo real total da casa, mas uma comparação indicativa.`;
+ renderEntries('fuelEntries',d.fuel,'fuel');renderEntries('shopEntries',d.shops,'shop');renderChart();renderHistory();
+}
+function renderEntries(id,arr,type){let el=$(id);if(!arr.length){el.innerHTML='<div class="empty">Ainda não existem registos neste ciclo.</div>';return}
+ el.innerHTML=arr.map((x,i)=>{let detail=type==='fuel'?`${num(x.litres)} L · desconto estimado ${euro(x.litres*.20)}${x.note?' · '+esc(x.note):''}`:`Compra ${euro(x.amount)} · saldo estimado ${euro(x.amount*.02)}${x.note?' · '+esc(x.note):''}`;return `<div class="entry"><div><strong>${esc(x.date||'Sem data')}</strong><div class="sub">${detail}</div></div><div class="entryright"><button class="btn danger" data-del="${type}" data-i="${i}" aria-label="Eliminar registo">×</button></div></div>`}).join('');
+ el.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{let d=data();(b.dataset.del==='fuel'?d.fuel:d.shops).splice(+b.dataset.i,1);save()})
+}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function renderChart(){let d=data(),v=values(d),max=Math.max(v.bill,v.total,1);let items=[{label:'Fatura',val:v.bill,cls:'invoice'},{label:'Benefícios',val:v.total,cls:''}];$('chart').innerHTML=items.map(x=>`<div class="barcol"><div class="barvalue">${euro(x.val)}</div><div class="bar ${x.cls}" style="height:${Math.max(2,x.val/max*125)}px"></div><div class="barlabel">${x.label}</div></div>`).join('')}
+function renderHistory(){let keys=Object.keys(store.cycles).sort().reverse();$('history').innerHTML=keys.length?keys.map(k=>{let v=values(store.cycles[k]);return `<tr><td>${esc(labelCycle(k))}</td><td>${euro(v.bill)}</td><td>${euro(v.total)}</td><td>${euro(v.net)}</td></tr>`}).join(''):'<tr><td colspan="4" style="text-align:center;color:#647487">Ainda sem histórico.</td></tr>'}
+$('prev').onclick=()=>{let [y,m]=current.split('-').map(Number);m--;if(m<1){m=12;y--}current=`${y}-${String(m).padStart(2,'0')}`;render()};
+$('next').onclick=()=>{let [y,m]=current.split('-').map(Number);m++;if(m>12){m=1;y++}current=`${y}-${String(m).padStart(2,'0')}`;render()};
+$('kwh').onchange=e=>{data().kwh=Math.max(0,+e.target.value||0);save()};
+$('bill').onchange=e=>{data().bill=Math.max(0,+e.target.value||0);save()};
+function setDefaultDate(id){$(id).value=dateISO(new Date())}setDefaultDate('fuelDate');setDefaultDate('shopDate');
+$('addFuel').onclick=()=>{let litres=+$('litres').value;if(!(litres>0)){alert('Introduz um número de litros superior a zero.');return}let date=$('fuelDate').value||dateISO(new Date());if(cycleFor(new Date(date+'T12:00:00'))!==current&&!confirm('A data escolhida está fora do ciclo selecionado. Queres registar mesmo assim neste ciclo?'))return;data().fuel.push({date,litres,paid:$('fuelPaid').value,note:$('fuelNote').value});$('litres').value='';$('fuelPaid').value='';$('fuelNote').value='';save()};
+$('addShop').onclick=()=>{let amount=+$('shopAmount').value;if(!(amount>0)){alert('Introduz um valor de compra superior a zero.');return}let date=$('shopDate').value||dateISO(new Date());if(cycleFor(new Date(date+'T12:00:00'))!==current&&!confirm('A data escolhida está fora do ciclo selecionado. Queres registar mesmo assim neste ciclo?'))return;data().shops.push({date,amount,note:$('shopNote').value});$('shopAmount').value='';$('shopNote').value='';save()};
+$('export').onclick=()=>{let blob=new Blob([JSON.stringify(store,null,2)],{type:'application/json'});download(blob,'galp-combina-copia.json')};
+$('importBtn').onclick=()=>$('importFile').click();
+$('importFile').onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let s=JSON.parse(await f.text());if(!s.cycles)throw Error();store=s;save();alert('Cópia importada com sucesso.')}catch(err){alert('Não foi possível importar: ficheiro inválido.')}e.target.value=''};
+$('csv').onclick=()=>{let rows=[['Ciclo','kWh','Fatura (€)','Litros','Desconto Galp 20c (€)','Referência anterior 10c (€)','Diferença combustível (€)','Compras Continente (€)','Saldo 2% (€)','Benefícios totais (€)','Fatura menos benefícios (€)']];Object.keys(store.cycles).sort().forEach(k=>{let v=values(store.cycles[k]);rows.push([k,v.kwh,v.bill,v.litres,v.fuel,v.old,v.extra,v.spend,v.shop,v.total,v.net])});let csv='\ufeff'+rows.map(r=>r.map(x=>`"${String(x).replace(/"/g,'""')}"`).join(';')).join('\r\n');download(new Blob([csv],{type:'text/csv;charset=utf-8'}),'historico-galp-combina.csv')};
+function download(blob,name){let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+load();render();
+</script>
+</body>
+</html>
